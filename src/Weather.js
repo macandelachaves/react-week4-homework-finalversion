@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import weather from "./Weather.css";
 
 export default function Weather() {
   let [weather, setWeather] = useState({});
@@ -10,7 +11,7 @@ export default function Weather() {
     console.log(response.data);
     setLoaded(true);
     setWeather({
-      temperature: response.data.main.temp,
+      temperature: Math.round(response.data.main.temp),
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
@@ -20,7 +21,7 @@ export default function Weather() {
 
   function handleWeather(event) {
     event.preventDefault();
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=53f3bc1f5d348c44be3e3754c7185573`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=53f3bc1f5d348c44be3e3754c7185573&units=metric`;
     axios.get(url).then(showWeather);
   }
 
@@ -30,8 +31,8 @@ export default function Weather() {
 
   let form = (
     <div>
-      <h1>Weather App</h1>
-      <form onSubmit={handleWeather}>
+      <h1 className="text-center mt-4">Weather App</h1>
+      <form className="text-center mt-3" onSubmit={handleWeather}>
         <input type="text" placeholder="type a city" onChange={updateCity} />
         <input type="submit" value="Submit" />
       </form>
@@ -42,8 +43,8 @@ export default function Weather() {
       <div>
         {" "}
         {form}
-        <ul>
-          <li> Temperature: {weather.temperature}</li>
+        <ul type="none" className="text-center mt-4">
+          <li> Temperature: {weather.temperature}°C</li>
           <li> Description: {weather.description}</li>
           <li> Humidity: {weather.humidity}</li>
           <li> Wind: {weather.wind}</li>
