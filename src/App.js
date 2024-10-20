@@ -19,7 +19,7 @@ function App() {
           </a>{" "}
           and{" "}
           <a
-            href="https://www.shecodes.io/learn/cohorts/2019/units/74/challenges/105"
+            href="https://candiweather-react-week4.netlify.app/"
             target="_blank"
             rel="noopener noreferrer"
           >
